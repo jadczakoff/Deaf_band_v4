@@ -85,7 +85,7 @@ enum
 {
   ITF_NUM_CDC = 0,
   ITF_NUM_CDC_DATA,
-  ITF_NUM_MSC,
+  //ITF_NUM_MSC,
   ITF_NUM_DFU_MODE,
   ITF_NUM_TOTAL
 };
@@ -142,7 +142,7 @@ enum
 
 #endif
 
-#define CONFIG_TOTAL_LEN    (TUD_CONFIG_DESC_LEN + TUD_CDC_DESC_LEN + TUD_MSC_DESC_LEN + TUD_DFU_DESC_LEN(ALT_COUNT))
+#define CONFIG_TOTAL_LEN    (TUD_CONFIG_DESC_LEN + TUD_CDC_DESC_LEN + TUD_DFU_DESC_LEN(ALT_COUNT))
 
 #define FUNC_ATTRS (DFU_ATTR_CAN_UPLOAD | DFU_ATTR_CAN_DOWNLOAD | DFU_ATTR_MANIFESTATION_TOLERANT)
 
@@ -156,10 +156,10 @@ uint8_t const desc_fs_configuration[] =
   TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 4, EPNUM_CDC_NOTIF, 8, EPNUM_CDC_OUT, EPNUM_CDC_IN, 64),
 
   // Interface number, string index, EP Out & EP In address, EP size
-  TUD_MSC_DESCRIPTOR(ITF_NUM_MSC, 5, EPNUM_MSC_OUT, EPNUM_MSC_IN, 64),
+  //TUD_MSC_DESCRIPTOR(ITF_NUM_MSC, 5, EPNUM_MSC_OUT, EPNUM_MSC_IN, 64),
 
   // Interface number, Alternate count, starting string index, attributes, detach timeout, transfer size
-   TUD_DFU_DESCRIPTOR(ITF_NUM_DFU_MODE, ALT_COUNT, 4, FUNC_ATTRS, 1000, CFG_TUD_DFU_XFER_BUFSIZE),
+   TUD_DFU_DESCRIPTOR(ITF_NUM_DFU_MODE, ALT_COUNT, 5, FUNC_ATTRS, 1000, CFG_TUD_DFU_XFER_BUFSIZE),
 };
 
 #if TUD_OPT_HIGH_SPEED
@@ -254,7 +254,7 @@ char const* string_desc_arr [] =
   "TinyUSB Device",              // 2: Product
   "123456789012",                // 3: Serials, should use chip ID
   "TinyUSB CDC",                 // 4: CDC Interface
-  "TinyUSB MSC",                 // 5: MSC Interface
+ // "TinyUSB MSC",                 // 5: MSC Interface
   "FLASH",                       // 6: DFU Partition 1
   "EEPROM",                      // 7: DFU Partition 2
 };
